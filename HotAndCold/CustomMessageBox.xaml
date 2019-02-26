@@ -1,0 +1,147 @@
+﻿<Window x:Class="HotAndCold.CustomMessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+		Background="#1C1C1C"
+		WindowStartupLocation="CenterScreen"
+		BorderThickness="1"
+		FocusVisualStyle="{x:Null}"
+		ResizeMode="NoResize"
+		Width="500"
+		Height="200"
+		KeyUp="wndMsgBox_KeyUp">
+	
+	<Window.Resources>
+		<Style x:Key="MyButtonStyle"
+			   TargetType="Button">
+			<Setter Property="OverridesDefaultStyle"
+					Value="True" />
+			<Setter Property="MinHeight"
+					Value="40" />
+			<Setter Property="MinWidth"
+					Value="80" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border Name="border"
+								BorderThickness="1"
+								Padding="4,2"
+								BorderBrush="DarkGray"
+								CornerRadius="0"
+								Background="{TemplateBinding Background}">
+							<ContentPresenter HorizontalAlignment="Center"
+											  VerticalAlignment="Center" />
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver"
+									 Value="True">
+								<Setter TargetName="border"
+										Property="BorderBrush"
+										Value="Black" />
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
+	
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+		</Grid.RowDefinitions>
+
+		<Button Style="{StaticResource MyButtonStyle}"
+				MinWidth="30"
+				MinHeight="30"
+				Height="30"
+				Width="30"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Center"
+				Margin="0, 10, 10, 0"
+				Background="#313131"
+				Foreground="#E3E3E3"
+				FontFamily="Consolas"
+				FontSize="15"
+				Content="x"
+				Click="Button_Click"></Button>
+		<Grid Margin="10,10,0,0"
+			  HorizontalAlignment="Left"
+			  Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Image x:Name="imgDialogImage"
+				   Width="32"
+				   Height="32"
+				   Grid.Column="0"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Top"
+				   Margin="5" />
+			<TextBlock Grid.Column="1"
+					   Margin="5 0 10 0"
+					   TextWrapping="WrapWithOverflow"
+					   Foreground="#E3E3E3"
+					   FontFamily="Consolas"
+					   FontSize="16"
+					   VerticalAlignment="Center"
+					   HorizontalAlignment="Left"
+					   x:Name="lblMessage" />
+		</Grid>
+
+		<Grid Grid.Row="2"
+			  Margin="0,10,10,10"
+			  HorizontalAlignment="Right"
+			  VerticalAlignment="Bottom">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition></ColumnDefinition>
+				<ColumnDefinition></ColumnDefinition>
+			</Grid.ColumnDefinitions>
+			<Button x:Name="btnYes"
+					Padding="8"
+					Background="#313131"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Center"
+					Margin="0,0,2.5,0"
+					Foreground="#E3E3E3"
+					FontFamily="Consolas"
+					FontSize="16"
+					Grid.Column="0"
+					Visibility="Visible"
+					Content="Yes"
+					Click="btnYes_Click"
+					Style="{StaticResource MyButtonStyle}" />
+			<Button x:Name="btnOK"
+					Padding="8"
+					Background="#313131"
+					Grid.ColumnSpan="2"
+					Foreground="#E3E3E3"
+					FontFamily="Consolas"
+					FontSize="16"
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center"
+					Content="OK"
+					Click="btnOK_Click"
+					Style="{StaticResource MyButtonStyle}">
+			</Button>
+			<Button x:Name="btnNo"
+					Padding="8"
+					Foreground="#E3E3E3"
+					FontFamily="Consolas"
+					FontSize="16"
+					Background="#313131"
+					Grid.Column="1"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Center"
+					Margin="2.5,0,0,0"
+					Content="No"
+					Click="btnNo_Click"
+					Style="{StaticResource MyButtonStyle}" />
+		</Grid>
+	</Grid>
+</Window>
